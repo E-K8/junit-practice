@@ -8,6 +8,25 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class MathUtilTest {
+  MathUtil mathUtil;
+  @BeforeAll
+  static void beforeAll() {
+    System.out.println("before all");
+  }
+  @AfterAll
+  static void afterAll() {
+    System.out.println("after all");
+  }
+  @BeforeEach
+  void setUp() {
+    System.out.println("before each setup");
+    mathUtil = new MathUtil();
+  }
+  @AfterEach
+  void tearDown() {
+    System.out.println("after each tear down");
+    mathUtil = null;
+  }
 
   @Test
   @Order(4)
@@ -16,7 +35,6 @@ class MathUtilTest {
 //    given
     int x = 2, y = 1;
 //    when
-    MathUtil mathUtil = new MathUtil();
     int actual = mathUtil.add(x, y);
 //    then
     assertEquals(3, actual);
@@ -29,7 +47,6 @@ class MathUtilTest {
     //    given
     int x = 11, y = 2;
 //    when
-    MathUtil mathUtil = new MathUtil();
     int actual = mathUtil.subtract(x, y);
 //    then
     assertEquals(9, actual);
@@ -40,7 +57,6 @@ class MathUtilTest {
   @DisplayName("should Return Three When Dividing Fifteen By Five")
   void shouldReturnThreeWhenDividingFifteenByFive() throws Exception {
     int x = 15, y = 5;
-    MathUtil mathUtil = new MathUtil();
     int actual = mathUtil.divide(x, y);
     assertEquals(3, actual);
   }
@@ -51,7 +67,6 @@ class MathUtilTest {
   void shouldThrowExceptionWhenDividedByZero() {
     int x = 8, y = 0;
 
-    MathUtil mathUtil = new MathUtil();
     Executable executable = () -> mathUtil.divide(x, y);
 
     assertThrows(Exception.class, executable);
