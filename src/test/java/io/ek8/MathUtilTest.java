@@ -9,19 +9,23 @@ import static org.junit.jupiter.api.Assertions.*;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class MathUtilTest {
   MathUtil mathUtil;
+
   @BeforeAll
   static void beforeAll() {
     System.out.println("before all");
   }
+
   @AfterAll
   static void afterAll() {
     System.out.println("after all");
   }
+
   @BeforeEach
   void setUp() {
     System.out.println("before each setup");
     mathUtil = new MathUtil();
   }
+
   @AfterEach
   void tearDown() {
     System.out.println("after each tear down");
@@ -70,5 +74,25 @@ class MathUtilTest {
     Executable executable = () -> mathUtil.divide(x, y);
 
     assertThrows(Exception.class, executable);
+  }
+
+  @Test
+  @DisplayName("isEven should return true")
+  void isEvenShouldReturnTrue() {
+    assertTrue(mathUtil.isEven(2));
+    assertTrue(mathUtil.isEven(4));
+    assertTrue(mathUtil.isEven(6));
+    assertTrue(mathUtil.isEven(8));
+  }
+
+  @Test
+  @DisplayName("isEven should return false")
+  void isEvenShouldReturnFalse() {
+    assertAll(
+        () -> assertFalse(mathUtil.isEven(1)),
+        () -> assertFalse(mathUtil.isEven(2)),
+        () -> assertFalse(mathUtil.isEven(5)),
+        () -> assertFalse(mathUtil.isEven(8))
+    );
   }
 }
