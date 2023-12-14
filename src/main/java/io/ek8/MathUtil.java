@@ -9,9 +9,11 @@ public class MathUtil {
     return x - y;
   }
 
-  public int divide(int x, int y) throws Exception {
-    if (x == 0 || y == 0) {
+  public Integer divide(int x, int y) throws Exception {
+    if (y == 0) {
       throw new Exception("can't use zeros");
+    } else if (x==0){
+      return null;
     }
     return x / y;
   }

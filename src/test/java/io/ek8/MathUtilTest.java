@@ -77,6 +77,17 @@ class MathUtilTest {
   }
 
   @Test
+  @DisplayName("should return null if the first parameter is zero")
+  void shouldReturnNullIfXIsZero() throws Exception {
+    assertNull(mathUtil.divide(0,5));
+  }
+  @Test
+  @DisplayName("should not return null if the first parameter is not zero")
+  void shouldNotReturnNullIfXIsNotZero() throws Exception {
+    assertNotNull(mathUtil.divide(15,5));
+  }
+
+  @Test
   @DisplayName("isEven should return true")
   void isEvenShouldReturnTrue() {
     assertTrue(mathUtil.isEven(2));
@@ -90,9 +101,9 @@ class MathUtilTest {
   void isEvenShouldReturnFalse() {
     assertAll(
         () -> assertFalse(mathUtil.isEven(1)),
-        () -> assertFalse(mathUtil.isEven(2)),
+        () -> assertFalse(mathUtil.isEven(3)),
         () -> assertFalse(mathUtil.isEven(5)),
-        () -> assertFalse(mathUtil.isEven(8))
+        () -> assertFalse(mathUtil.isEven(7))
     );
   }
 }
