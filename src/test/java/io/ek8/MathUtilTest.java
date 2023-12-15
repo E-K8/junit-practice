@@ -3,6 +3,8 @@ package io.ek8;
 import org.junit.jupiter.api.*;
 
 import org.junit.jupiter.api.function.Executable;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -79,12 +81,19 @@ class MathUtilTest {
   @Test
   @DisplayName("should return null if the first parameter is zero")
   void shouldReturnNullIfXIsZero() throws Exception {
-    assertNull(mathUtil.divide(0,5));
+    assertNull(mathUtil.divide(0, 5));
   }
+
   @Test
   @DisplayName("should not return null if the first parameter is not zero")
   void shouldNotReturnNullIfXIsNotZero() throws Exception {
-    assertNotNull(mathUtil.divide(15,5));
+    assertNotNull(mathUtil.divide(15, 5));
+  }
+
+  @ParameterizedTest(name = "X={0}, Y={1}")
+  @CsvSource(value = {"11, 4", "12, 3"})
+  void testingAdd(int x, int y) {
+    assertEquals(15, mathUtil.add(x, y));
   }
 
   @Test
