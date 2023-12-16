@@ -5,6 +5,7 @@ import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.function.Executable;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -94,6 +95,12 @@ class MathUtilTest {
   @CsvSource(value = {"11, 4", "12, 3"})
   void testingAdd(int x, int y) {
     assertEquals(15, mathUtil.add(x, y));
+  }
+
+  @ParameterizedTest(name = "Testing the value {0}")
+  @ValueSource(ints = {2, 4, 6, 8, 10, 12})
+  void testingIsEven(int x) {
+    assertTrue(mathUtil.isEven(x));
   }
 
   @Test
