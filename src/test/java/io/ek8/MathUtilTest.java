@@ -9,6 +9,8 @@ import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.time.Duration;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -142,14 +144,30 @@ class MathUtilTest {
   }
 
   @RepeatedTest(10)
-  void generateRandom() throws InterruptedException{
+  void generateRandom() throws InterruptedException {
     assertTrue(mathUtil.generateRandom(10) < 10);
   }
 
   @Test
   void generateRandomPerformance() {
-    assertTimeout(Duration.ofMillis(1), ()->mathUtil.generateRandom(10));
+    assertTimeout(Duration.ofMillis(1), () -> mathUtil.generateRandom(10));
   }
 
+  @Test
+  void duplicateArrTest() {
+    //given
+    Integer[] arr = {1, 2, 3, 4};
+    //when
+    int[] actual = mathUtil.duplicateArr(arr);
+    //then
+    assertArrayEquals(new int[]{2, 4, 6, 8}, actual);
+  }
+
+  @Test
+  void duplicateListTest() {
+    List<Integer> list = new ArrayList<>(List.of(1, 2, 3, 4));
+    List<Integer> actual = mathUtil.duplicateList(list);
+    assertIterableEquals(List.of(2, 4, 6, 8), actual);
+  }
 
 }

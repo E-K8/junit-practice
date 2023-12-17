@@ -1,5 +1,7 @@
 package io.ek8;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 
 public class MathUtil {
@@ -14,7 +16,7 @@ public class MathUtil {
   public Integer divide(int x, int y) throws Exception {
     if (y == 0) {
       throw new Exception("can't use zeros");
-    } else if (x==0){
+    } else if (x == 0) {
       return null;
     }
     return x / y;
@@ -27,5 +29,13 @@ public class MathUtil {
   public int generateRandom(int limit) throws InterruptedException {
     Thread.sleep(500);
     return new Random().nextInt(limit);
+  }
+
+  public int[] duplicateArr(Integer[] numbers) {
+    return Arrays.stream(numbers).mapToInt(e -> e * 2).toArray();
+  }
+
+  public List<Integer> duplicateList(List<Integer> numbers) {
+    return numbers.stream().map(e -> e * 2).toList();
   }
 }
