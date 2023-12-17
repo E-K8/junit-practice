@@ -1,5 +1,7 @@
 package io.ek8;
 
+import java.util.Random;
+
 public class MathUtil {
   public int add(int x, int y) {
     return x + y;
@@ -20,5 +22,10 @@ public class MathUtil {
 
   public boolean isEven(int number) {
     return number % 2 == 0;
+  }
+
+  public int generateRandom(int limit) throws InterruptedException {
+    Thread.sleep(500);
+    return new Random().nextInt(limit);
   }
 }

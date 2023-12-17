@@ -8,6 +8,9 @@ import org.junit.jupiter.params.provider.CsvFileSource;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.time.Duration;
+import java.util.Random;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
@@ -132,8 +135,21 @@ class MathUtilTest {
     );
   }
 
+  @Disabled
   @Test
   void testingMultiplication() {
     fail("to be implemented");
   }
+
+  @RepeatedTest(10)
+  void generateRandom() throws InterruptedException{
+    assertTrue(mathUtil.generateRandom(10) < 10);
+  }
+
+  @Test
+  void generateRandomPerformance() {
+    assertTimeout(Duration.ofMillis(1), ()->mathUtil.generateRandom(10));
+  }
+
+
 }
