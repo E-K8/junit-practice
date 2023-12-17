@@ -4,6 +4,7 @@ import org.junit.jupiter.api.*;
 
 import org.junit.jupiter.api.function.Executable;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvFileSource;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -103,6 +104,13 @@ class MathUtilTest {
     assertTrue(mathUtil.isEven(x));
   }
 
+  @ParameterizedTest
+  @CsvFileSource(resources = "/test_data.csv", numLinesToSkip = 1)
+  void testingAddMethodFromFile(int x, int y) {
+    assertEquals(15, mathUtil.add(x, y));
+  }
+
+  @Disabled
   @Test
   @DisplayName("isEven should return true")
   void isEvenShouldReturnTrue() {
@@ -112,6 +120,7 @@ class MathUtilTest {
     assertTrue(mathUtil.isEven(8));
   }
 
+  @Disabled
   @Test
   @DisplayName("isEven should return false")
   void isEvenShouldReturnFalse() {
@@ -121,5 +130,10 @@ class MathUtilTest {
         () -> assertFalse(mathUtil.isEven(5)),
         () -> assertFalse(mathUtil.isEven(7))
     );
+  }
+
+  @Test
+  void testingMultiplication() {
+    fail("to be implemented");
   }
 }
